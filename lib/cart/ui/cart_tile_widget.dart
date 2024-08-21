@@ -1,17 +1,16 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-
-import 'package:flutter_groceryshop_bloc/home/bloc/home_bloc.dart';
+import 'package:flutter_groceryshop_bloc/cart/bloc/cart_bloc.dart';
 import 'package:flutter_groceryshop_bloc/home/models/home_product_data_model.dart';
 
-class ProductTile extends StatelessWidget {
+class CartTile extends StatelessWidget {
   final ProductDataModel productDataModel;
-  HomeBloc homeBloc = HomeBloc();
-  ProductTile({
+  CartBloc cartBloc = CartBloc();
+  CartTile({
     super.key,
     required this.productDataModel,
-    required this.homeBloc,
+    required this.cartBloc,
   });
 
   @override
@@ -63,20 +62,15 @@ class ProductTile extends StatelessWidget {
                           Row(
                             children: [
                               IconButton(
-                                  onPressed: () {
-                                    homeBloc.add(HomeAddToWishList(
-                                      clickedProduct: productDataModel,
-                                    ));
-                                  },
+                                  onPressed: () {},
                                   icon: const Icon(
                                       Icons.favorite_border_outlined)),
                               IconButton(
                                   onPressed: () {
-                                    homeBloc.add(HomeAddToCart(
-                                      clickedProduct: productDataModel,
-                                    ));
+                                    cartBloc.add(CartRemoveCartItemsEvent(
+                                        productDataModel: productDataModel));
                                   },
-                                  icon: const Icon(Icons.shopping_bag_outlined))
+                                  icon: const Icon(Icons.shopping_bag))
                             ],
                           )
                         ],
