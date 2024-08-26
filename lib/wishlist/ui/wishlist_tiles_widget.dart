@@ -1,17 +1,16 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-
-import 'package:flutter_groceryshop_bloc/home/bloc/home_bloc.dart';
 import 'package:flutter_groceryshop_bloc/home/models/home_product_data_model.dart';
+import 'package:flutter_groceryshop_bloc/wishlist/bloc/wishlist_bloc.dart';
 
-class ProductTile extends StatelessWidget {
+class WishlistTilesWidget extends StatelessWidget {
   final ProductDataModel productDataModel;
-  HomeBloc homeBloc = HomeBloc();
-  ProductTile({
+  WishlistBloc wishlistBloc = WishlistBloc();
+  WishlistTilesWidget({
     super.key,
     required this.productDataModel,
-    required this.homeBloc,
+    required this.wishlistBloc,
   });
 
   @override
@@ -64,18 +63,14 @@ class ProductTile extends StatelessWidget {
                             children: [
                               IconButton(
                                   onPressed: () {
-                                    homeBloc.add(HomeAddToWishList(
-                                      clickedProduct: productDataModel,
-                                    ));
+                                    wishlistBloc.add(
+                                        WishlistRemoveWishlistItemEvent(
+                                            productDataModel:
+                                                productDataModel));
                                   },
-                                  icon: const Icon(
-                                      Icons.favorite_border_outlined)),
+                                  icon: const Icon(Icons.favorite)),
                               IconButton(
-                                  onPressed: () {
-                                    homeBloc.add(HomeAddToCart(
-                                      clickedProduct: productDataModel,
-                                    ));
-                                  },
+                                  onPressed: () {},
                                   icon: const Icon(Icons.shopping_bag_outlined))
                             ],
                           )
