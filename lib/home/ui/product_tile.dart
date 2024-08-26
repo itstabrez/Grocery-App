@@ -64,7 +64,7 @@ class ProductTile extends StatelessWidget {
                             children: [
                               IconButton(
                                   onPressed: () {
-                                    homeBloc.add(HomeAddToWishList(
+                                    homeBloc.add(HomeAddToCart(
                                       clickedProduct: productDataModel,
                                     ));
                                   },
@@ -72,7 +72,7 @@ class ProductTile extends StatelessWidget {
                                       Icons.favorite_border_outlined)),
                               IconButton(
                                   onPressed: () {
-                                    homeBloc.add(HomeAddToCart(
+                                    homeBloc.add(HomeAddToWishList(
                                       clickedProduct: productDataModel,
                                     ));
                                   },

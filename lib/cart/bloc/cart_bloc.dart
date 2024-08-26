@@ -14,20 +14,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<CartInitialEvent>((event, emit) async {
       await cartInitialEvent(event, emit);
     });
-    on<CartRemoveCartItemsEvent>((event, emit) async {
-      await cartRemoveCartItemsEvent(event, emit);
-    });
   }
 
   FutureOr<void> cartInitialEvent(
       CartInitialEvent event, Emitter<CartState> emit) {
-    emit(CartSuccessState(cartItems: cartItems));
-  }
-
-  FutureOr<void> cartRemoveCartItemsEvent(
-      CartRemoveCartItemsEvent event, Emitter<CartState> emit) {
-    cartItems.remove(event.productDataModel);
-    emit(CartRemovedCartItemActionState());
     emit(CartSuccessState(cartItems: cartItems));
   }
 }

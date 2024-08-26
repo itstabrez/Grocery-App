@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_groceryshop_bloc/cart/bloc/cart_bloc.dart';
-import 'package:flutter_groceryshop_bloc/cart/ui/cart_tile_widget.dart';
+import 'package:flutter_groceryshop_bloc/cart/ui/cart_tile.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -28,12 +28,7 @@ class _CartPageState extends State<CartPage> {
           listenWhen: (previous, current) => current is CartActionState,
           buildWhen: (previous, current) => current is! CartActionState,
           bloc: cartBloc,
-          listener: (context, state) {
-            if (state is CartRemovedCartItemActionState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Cart item removed")));
-            }
-          },
+          listener: (context, state) {},
           builder: (context, state) {
             switch (state.runtimeType) {
               case const (CartSuccessState):
@@ -47,7 +42,6 @@ class _CartPageState extends State<CartPage> {
                     );
                   },
                 );
-
               default:
                 return const SizedBox();
             }
